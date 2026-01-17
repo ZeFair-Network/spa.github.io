@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MineWorld - Главная</title>
+    <link rel="icon" href="images/logo-white.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="background-placeholder"></div>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section id="hero">
+            <h1 class="md-typescale-display-large">MineWorld</h1>
+            <p class="md-typescale-body-large">Твой новый мир приключений. Уникальные режимы, отзывчивая администрация и дружное комьюнити ждут тебя.</p>
+            <button class="md-button md-button--filled" id="copy-ip-button" data-ip="play.mineworld.com">
+                <span class="material-icons">content_copy</span>
+                <span class="md-typescale-label-large">play.mineworld.com</span>
+            </button>
+        </section>
+
+        <section id="video-preview">
+            <h2 class="md-typescale-headline-large">Трейлер сервера</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section id="photo-preview">
+            <h2 class="md-typescale-headline-large">Галерея</h2>
+            <div class="photo-grid">
+                <img src="https://placehold.co/600x400/8A6955/121212?text=Спавн" alt="Спавн">
+                <img src="https://placehold.co/600x400/5A8A3B/121212?text=Выживание" alt="Выживание">
+                <img src="https://placehold.co/600x400/89CFF0/121212?text=SkyBlock" alt="SkyBlock">
+            </div>
+        </section>
+
+        <section id="feed">
+            <h2 class="md-typescale-headline-large">Новости</h2>
+            <div class="feed-item md-typescale-body-large">
+                <p><strong>15 августа:</strong> Грядет большое летнее обновление! Готовьтесь к новым квестам и боссам.</p>
+            </div>
+            <div class="feed-item md-typescale-body-large">
+                <p><strong>10 августа:</strong> Проведены технические работы. Улучшена стабильность на режиме SkyBlock.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // Скрипт для кнопки копирования IP
+        const copyIpButton = document.getElementById('copy-ip-button');
+        if (copyIpButton) {
+            const originalText = copyIpButton.querySelector('.md-typescale-label-large').textContent;
+            const icon = copyIpButton.querySelector('.material-icons');
+
+            copyIpButton.addEventListener('click', () => {
+                const ip = copyIpButton.dataset.ip;
+                navigator.clipboard.writeText(ip).then(() => {
+                    copyIpButton.querySelector('.md-typescale-label-large').textContent = 'СКОПИРОВАНО!';
+                    icon.textContent = 'check';
+                    copyIpButton.classList.add('copied');
+
+                    setTimeout(() => {
+                        copyIpButton.querySelector('.md-typescale-label-large').textContent = originalText;
+                        icon.textContent = 'content_copy';
+                        copyIpButton.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        }
+    </script>
+    <style>
+        #copy-ip-button.copied {
+            background-color: #4CAF50; /* Зеленый цвет для обратной связи */
+            box-shadow: 0 8px 24px -8px #4CAF50;
+        }
+    </style>
+</body>
+</html>

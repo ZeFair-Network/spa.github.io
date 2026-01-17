@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Режимы - MineWorld</title>
+    <link rel="icon" href="images/logo-white.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="background-placeholder"></div>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section id="music-hero">
+            <h1 class="md-typescale-display-large">Игровые режимы</h1>
+            <p class="md-typescale-body-large">Исследуйте миры, созданные для вас.</p>
+        </section>
+
+        <section id="main-modes">
+            <h2 class="md-typescale-headline-large">Основные режимы</h2>
+            <div class="album-grid">
+                <div class="album-card"
+                     data-title="Выживание"
+                     data-year="Классика"
+                     data-summary="Классическое выживание с уникальными плагинами. Развитая экономика, кланы, квесты и никаких гриферов. Идеально для тех, кто любит строить и исследовать."
+                     data-cover="https://placehold.co/400x400/5A8A3B/FFFFFF?text=Выживание"
+                     data-features='["Приватные территории", "Экономика и аукцион", "Система кланов", "Ежедневные квесты", "Анти-гриф система"]'>
+                    <img src="https://placehold.co/400x400/5A8A3B/FFFFFF?text=Выживание" alt="Режим Выживание">
+                    <div class="album-info">
+                        <h3 class="md-typescale-title-large">Выживание</h3>
+                        <p class="md-typescale-body-large">Классика</p>
+                    </div>
+                    <div class="play-icon">
+                        <span class="material-icons">explore</span>
+                    </div>
+                </div>
+                <div class="album-card"
+                     data-title="SkyBlock"
+                     data-year="Покорение небес"
+                     data-summary="Начните с небольшого острова в небе и превратите его в процветающую империю. Выполняйте задания, расширяйте свой остров и торгуйте с другими игроками."
+                     data-cover="https://placehold.co/400x400/89CFF0/FFFFFF?text=SkyBlock"
+                     data-features='["Уникальные острова", "Система прокачки", "Рынок ресурсов", "Кооперативный режим", "Топ игроков"]'>
+                    <img src="https://placehold.co/400x400/89CFF0/FFFFFF?text=SkyBlock" alt="Режим SkyBlock">
+                    <div class="album-info">
+                        <h3 class="md-typescale-title-large">SkyBlock</h3>
+                        <p class="md-typescale-body-large">Покорение небес</p>
+                    </div>
+                    <div class="play-icon">
+                        <span class="material-icons">filter_drama</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="minigames">
+            <h2 class="md-typescale-headline-large">Мини-игры</h2>
+            <div class="album-grid">
+                <div class="album-card"
+                     data-title="BedWars"
+                     data-year="Быстрые бои"
+                     data-summary="Сражайтесь с другими командами, защищая свою кровать. Быстрые и динамичные раунды, требующие тактики и командной работы."
+                     data-cover="https://placehold.co/400x400/E34234/FFFFFF?text=BedWars"
+                     data-features='["Командные бои", "Разнообразные карты", "Система улучшений", "Рейтинговые матчи"]'>
+                    <img src="https://placehold.co/400x400/E34234/FFFFFF?text=BedWars" alt="Режим BedWars">
+                    <div class="album-info">
+                        <h3 class="md-typescale-title-large">BedWars</h3>
+                        <p class="md-typescale-body-large">Быстрые бои</p>
+                    </div>
+                    <div class="play-icon">
+                        <span class="material-icons">shield</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="album-popup" class="album-popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <div class="popup-header">
+                <img id="popup-cover" src="" alt="Обложка режима">
+                <div class="popup-info">
+                    <h2 id="popup-title" class="md-typescale-headline-large"></h2>
+                    <p id="popup-year" class="md-typescale-body-large"></p>
+                    <p id="popup-summary" class="md-typescale-body-large"></p>
+                </div>
+            </div>
+            <div class="popup-tracklist">
+                <h3 class="md-typescale-title-large">Особенности</h3>
+                <ul id="popup-features"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
