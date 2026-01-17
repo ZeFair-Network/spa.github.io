@@ -4,11 +4,11 @@
     --color-surface: #1E1E1E;
     --color-on-surface: #FFFFFF;
     --color-on-surface-variant: #B3B3B3;
-    --color-primary: #D0BCFF; /* Material Purple */
-    --color-accent: #FF00BF;   /* Vibrant Magenta/Pink */
-    --color-outline: #2A2A2A; /* Softer outline */
+    --color-primary: #D0BCFF;
+    --color-accent: #334eff;
+    --color-outline: #2A2A2A;
     --font-family: 'Roboto', sans-serif;
-    --header-height: 73px; /* Height of the header */
+    --header-height: 73px;
 }
 
 /* --- Base & Typography --- */
@@ -277,7 +277,7 @@ footer {
     transform: translate(-50%, -50%) scale(0.8);
     width: 64px;
     height: 64px;
-    background-color: rgba(255, 0, 191, 0.8);
+    background-color: rgb(51, 78, 255);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -792,7 +792,7 @@ footer {
     box-shadow: 0 8px 24px -8px var(--color-accent);
 }
 .md-button--filled:hover {
-    background-color: #FF33C9;
+    background-color: #334eff;
     box-shadow: 0 12px 32px -8px var(--color-accent);
 }
 
