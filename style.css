@@ -887,3 +887,13 @@ footer {
     background-color: #4CAF50; /* Зеленый цвет для обратной связи */
     box-shadow: 0 8px 24px -8px #4CAF50;
 }
+
+.mods-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.mods-link:hover {
+    color: var(--color-on-surface);
+}
