@@ -1,0 +1,64 @@
+# Имя вашего сайта, будет отображаться в шапке
+site_name: 'Вики SP.A'
+site_description: 'База знаний сервера SP.A'
+
+# URL, по которому будет доступна ваша вики.
+# Замените your-domain.com на ваш реальный домен, когда он появится.
+# Окончание /wiki/ здесь КРИТИЧЕСКИ ВАЖНО!
+site_url: 'https://your-domain.com/wiki/'
+
+# Подключение кастомного CSS
+extra_css:
+  - extra.css
+
+# Настройки темы
+theme:
+  name: 'material'
+  language: 'ru'
+  logo: 'images/logo-white.svg' # Путь к логотипу
+  favicon: 'images/logo-white.svg'
+  palette:
+    # Настраиваем цвета, как на основном сайте
+    - scheme: slate # Темная тема по умолчанию
+      primary: 'deep purple' # Используем название цвета, близкое к #D0BCFF
+      accent: 'blue' # Используем название цвета, близкое к #334eff
+      toggle:
+        icon: material/brightness-4
+        name: Переключить на светлую тему
+    - scheme: default # Светлая тема
+      primary: 'deep purple'
+      accent: 'blue'
+      toggle:
+        icon: material/brightness-7
+        name: Переключить на темную тему
+  features:
+    - navigation.top
+    - navigation.sections
+
+# Навигация по сайту (ваше меню)
+nav:
+  - 'Главная': 'index.md'
+  - 'Первые шаги': 'getting_started.md'
+  - 'Правила сервера': 'rules.md'
+  - 'Миры и особенности':
+    - 'Описание миров': 'worlds.md'
+    - 'Ивенты': 'events.md'
+  - 'Игровые механики':
+    - 'Экономика': 'economy.md'
+    - 'Приват территорий': 'privatization.md'
+    - 'Кланы': 'clans.md'
+    - 'Магазины игроков': 'chestshop.md'
+  - 'Сообщество':
+    - 'Команда проекта': 'staff.md'
+    - 'Голосование за сервер': 'voting.md'
+  - 'Ранги и донат': 'ranks.md'
+  - 'Справочник команд': 'commands.md'
+  - 'Словарь терминов': 'glossary.md'
+  - 'FAQ': 'faq.md'
+
+# Дополнительная ссылка для возврата на главный сайт
+extra:
+  social:
+    - icon: fontawesome/solid/globe
+      link: /index.html # Ссылка на главный сайт
+      name: Главный сайт
