@@ -7,9 +7,14 @@ site_description: 'База знаний сервера SP.A'
 # Окончание /wiki/ здесь КРИТИЧЕСКИ ВАЖНО!
 site_url: 'https://your-domain.com/wiki/'
 
-# Подключение кастомного CSS
+# Подключение кастомных CSS и JS
 extra_css:
   - extra.css
+extra_javascript:
+  - extra.js
+
+# Указываем папку для кастомных шаблонов
+custom_dir: overrides
 
 # Настройки темы
 theme:
@@ -19,18 +24,18 @@ theme:
   favicon: 'images/logo-white.svg'
   palette:
     # Настраиваем цвета, как на основном сайте
+    - scheme: default # Светлая тема
+      primary: 'deep purple' # Используем название цвета, близкое к #D0BCFF
+      accent: 'blue' # Используем название цвета, близкое к #334eff
+      toggle:
+        icon: material/brightness-7
+        name: Переключить на темную тему
     - scheme: slate # Темная тема по умолчанию
       primary: 'deep purple' # Используем название цвета, близкое к #D0BCFF
       accent: 'blue' # Используем название цвета, близкое к #334eff
       toggle:
         icon: material/brightness-4
         name: Переключить на светлую тему
-    - scheme: default # Светлая тема
-      primary: 'deep purple'
-      accent: 'blue'
-      toggle:
-        icon: material/brightness-7
-        name: Переключить на темную тему
   features:
     - navigation.top
     - navigation.sections
