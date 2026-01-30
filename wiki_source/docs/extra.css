@@ -1,0 +1,86 @@
+/* Custom CSS for MkDocs Material theme */
+
+/* Adjust main content position since header is gone */
+.md-main {
+    padding-top: 0 !important;
+}
+.md-sidebar {
+    top: 0 !important;
+}
+
+
+/* --- BACKGROUND & LAYOUT --- */
+
+/* Apply the main site's background color to the html and body */
+html, body {
+    background-color: #121212 !important; /* var(--color-background) */
+}
+
+/* Apply the noise texture from the main site to the html::after pseudo-element */
+html::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAElBMVEUAAAD8/vz8/vz8/vz8/vz8/vyQ2IfvAAAAB3RSTlMAEREiI3mKyE2T/gAAAAlwSFlzAAALEwAACxMBAJqcGAAAADZJREFUOMtjYKAkYGRgYGBgYGBob2BgaGBoY2BgYGBoYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYADNAAFrwAUj1sN8AAAAAElFTkSuQmCC') !important;
+    opacity: 0.04 !important;
+    pointer-events: none !important;
+    z-index: -2 !important;
+}
+
+/* --- AURORA BACKGROUND --- */
+.aurora-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.aurora-layer {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: var(--aurora-color);
+    border-radius: 50%;
+    filter: blur(160px);
+    mix-blend-mode: screen;
+    opacity: 0.3; /* Adjusted for a more subtle effect */
+    animation: drift 20s infinite linear alternate;
+}
+.aurora-layer:nth-child(2) {
+    animation-duration: 25s;
+    animation-direction: alternate-reverse;
+}
+.aurora-layer:nth-child(3) {
+    animation-duration: 18s;
+}
+
+@keyframes drift {
+    0% { transform: translate(-20%, -20%) scale(1); }
+    50% { transform: translate(80%, 70%) scale(1.5); }
+    100% { transform: translate(10%, 50%) scale(1.2); }
+}
+
+/* --- CLICK SPLASH --- */
+.click-splash {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FFFFFF 0%, transparent 70%);
+    transform: scale(0);
+    opacity: 0.5;
+    animation: splash 0.6s ease-out;
+    pointer-events: none;
+    z-index: 100;
+}
+
+@keyframes splash {
+    to {
+        transform: scale(3);
+        opacity: 0;
+    }
+}

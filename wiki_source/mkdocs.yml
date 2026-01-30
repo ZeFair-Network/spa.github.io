@@ -1,11 +1,11 @@
 # Имя вашего сайта, будет отображаться в шапке
-site_name: 'Вики SP.A'
+site_name: 'Вики - SP.A'
 site_description: 'База знаний сервера SP.A'
 
 # URL, по которому будет доступна ваша вики.
 # Замените your-domain.com на ваш реальный домен, когда он появится.
 # Окончание /wiki/ здесь КРИТИЧЕСКИ ВАЖНО!
-site_url: 'https://your-domain.com/wiki/'
+site_url: 'https://zn-worlds.ado-dokidokihimitsukichi-daigakuimo.ru/wiki/'
 
 # Подключение кастомных CSS и JS
 extra_css:
@@ -20,19 +20,20 @@ custom_dir: overrides
 theme:
   name: 'material'
   language: 'ru'
-  logo: 'images/logo-white.svg' # Путь к логотипу
+  logo: 'images/logo-white.svg'
   favicon: 'images/logo-white.svg'
   palette:
-    # Настраиваем цвета, как на основном сайте
-    - scheme: default # Светлая тема
-      primary: 'deep purple' # Используем название цвета, близкое к #D0BCFF
-      accent: 'blue' # Используем название цвета, близкое к #334eff
+    # Светлая тема по умолчанию
+    - scheme: default
+      primary: 'deep purple'
+      accent: 'blue'
       toggle:
         icon: material/brightness-7
         name: Переключить на темную тему
-    - scheme: slate # Темная тема по умолчанию
-      primary: 'deep purple' # Используем название цвета, близкое к #D0BCFF
-      accent: 'blue' # Используем название цвета, близкое к #334eff
+    # Темная тема для переключения
+    - scheme: slate
+      primary: 'deep purple'
+      accent: 'blue'
       toggle:
         icon: material/brightness-4
         name: Переключить на светлую тему
@@ -42,6 +43,8 @@ theme:
 
 # Навигация по сайту (ваше меню)
 nav:
+  - '← На главный сайт': '/index.html'
+  - '---' # Горизонтальная линия-разделитель
   - 'Главная': 'index.md'
   - 'Первые шаги': 'getting_started.md'
   - 'Правила сервера': 'rules.md'
@@ -60,10 +63,3 @@ nav:
   - 'Справочник команд': 'commands.md'
   - 'Словарь терминов': 'glossary.md'
   - 'FAQ': 'faq.md'
-
-# Дополнительная ссылка для возврата на главный сайт
-extra:
-  social:
-    - icon: fontawesome/solid/globe
-      link: /index.html # Ссылка на главный сайт
-      name: Главный сайт
