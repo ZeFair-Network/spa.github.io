@@ -20,25 +20,11 @@ custom_dir: overrides
 theme:
   name: 'material'
   language: 'ru'
-  logo: 'images/logo-white.svg'
-  favicon: 'images/logo-white.svg'
-  palette:
-    # Светлая тема по умолчанию
-    - scheme: default
-      primary: 'deep purple'
-      accent: 'blue'
-      toggle:
-        icon: material/brightness-7
-        name: Переключить на темную тему
-    # Темная тема для переключения
-    - scheme: slate
-      primary: 'deep purple'
-      accent: 'blue'
-      toggle:
-        icon: material/brightness-4
-        name: Переключить на светлую тему
+  # Удаляем logo, favicon и palette, так как они будут в custom header/footer
   features:
+    # navigation.top - это кнопка "наверх", ее можно оставить
     - navigation.top
+    # navigation.sections - это боковое меню вики, его оставляем
     - navigation.sections
 
 # Навигация по сайту (ваше меню)

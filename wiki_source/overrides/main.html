@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
 {% block header %}
-  {% include "header.html" %}
+  {% include "overrides/header.html" %}
 {% endblock %}
 
 {% block footer %}
-  {% include "footer.html" %}
+  {% include "overrides/footer.html" %}
+{% endblock %}
+
+{% block body %}
+  <div class="aurora-background">
+    <div class="aurora-layer" style="--aurora-color: #D0BCFF;"></div>
+    <div class="aurora-layer" style="--aurora-color: #334eff;"></div>
+    <div class="aurora-layer" style="--aurora-color: #00aaff;"></div>
+  </div>
+  {{ super() }}
 {% endblock %}
