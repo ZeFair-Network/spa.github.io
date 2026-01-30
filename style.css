@@ -897,3 +897,89 @@ footer {
 .mods-link:hover {
     color: var(--color-on-surface);
 }
+
+/* --- Wiki Page --- */
+.wiki-main {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Ширина сайдбара и контента */
+    gap: 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+
+.wiki-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + 24px); /* Отступ от шапки */
+    height: fit-content;
+    padding: 0; /* Убираем padding */
+    background-color: transparent; /* Убираем фон */
+    border-radius: 0; /* Убираем скругления */
+    border: none; /* Убираем рамку */
+}
+
+.wiki-sidebar .wiki-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0 0;
+    display: block;
+}
+
+.wiki-sidebar .wiki-nav li a {
+    display: block;
+    padding: 8px 16px; /* Добавляем горизонтальный padding для текста */
+    color: var(--color-on-surface-variant);
+    text-decoration: none;
+    transition: color 0.2s, background-color 0.2s; /* Добавляем transition для фона */
+    font-size: 15px;
+    border-left: 3px solid transparent; /* Для активной полоски */
+}
+
+.wiki-sidebar .wiki-nav li a:hover {
+    color: var(--color-on-surface); /* Цвет текста при наведении */
+    background-color: transparent; /* Убираем фон при наведении */
+    transform: none; /* Убираем сдвиг */
+}
+
+.wiki-sidebar .wiki-nav li a.active {
+    color: var(--color-primary);
+    font-weight: 700;
+    border-left-color: var(--color-primary); /* Активная полоска */
+    background-color: transparent; /* Убираем фон для активного пункта */
+}
+
+.wiki-content {
+    padding: 48px; /* Добавляем общий padding для контента */
+    background-color: rgba(18, 18, 18, 0.5); /* Общий фон для всего контента */
+    border: 1px solid var(--color-outline); /* Общая рамка */
+    border-radius: 24px; /* Общие скругления */
+}
+
+.wiki-content section {
+    margin-bottom: 48px; /* Отступы между секциями */
+    padding: 0; /* Убираем padding у отдельных секций */
+    background-color: transparent; /* Убираем фон у отдельных секций */
+    border: none; /* Убираем рамку у отдельных секций */
+    border-radius: 0; /* Убираем скругления у отдельных секций */
+}
+
+.wiki-content section:last-child {
+    margin-bottom: 0;
+}
+
+.wiki-content h2 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: var(--color-primary);
+}
+
+.wiki-content h4 {
+    margin-top: 32px;
+    margin-bottom: 8px;
+    color: var(--color-on-surface);
+}
+
+.wiki-content p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+}

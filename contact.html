@@ -10,29 +10,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .social-button.social-button--row {
-            flex-direction: row;
-            justify-content: flex-start;
-            gap: 16px;
-            padding: 0 24px;
-            height: 72px;
-        }
-        .social-button.social-button--row i {
-            font-size: 32px;
-            transform: translateY(0); /* Сброс анимации */
-        }
-        .social-button.social-button--row .social-label {
-            opacity: 1;
-            transform: translateY(0); /* Сброс анимации */
-            position: static;
-            font-size: 18px;
-        }
-        .social-button.social-button--row:hover i,
-        .social-button.social-button--row:hover .social-label {
-            transform: translateY(0); /* Отключаем движение при наведении */
-        }
-    </style>
 </head>
 <body class="contact-page-body">
     <div id="preloader">
@@ -56,20 +33,16 @@
 
                     <section id="contact-content">
                         <div class="social-grid-container">
-                            <div class="social-grid">
+                            <div class="social-grid social-grid--two-columns">
                                 <a href="https://t.me/Ado_RU_Community" class="social-button telegram social-button--row">
                                     <i class="fab fa-telegram"></i>
                                     <span class="social-label">Ado RU Community</span>
                                 </a>
-                            </div>
-                        </div>
-
-                        <div class="social-grid-container">
-                            <div class="social-grid">
-                                <a href="https://t.me/Ado_RU_Community" class="social-button telegram social-button--row">
-                                    <i class="fab fa-telegram"></i>
-                                    <span class="social-label">Ado RU Community</span>
+                                <a href="https://t.me/spa_official_ru" class="social-button telegram social-button--row">
+                                <i class="fab fa-telegram"></i>
+                                <span class="social-label">SP.A</span>
                                 </a>
+                                <!-- Добавьте другие кнопки здесь, если нужно -->
                             </div>
                         </div>
                          <div class="professional-contacts">
