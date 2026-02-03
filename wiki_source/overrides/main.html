@@ -1,18 +1,20 @@
 {% extends "base.html" %}
 
-{% block header %}
-  {% include "overrides/header.html" %}
-{% endblock %}
+{# Оставляем стандартный блок хедера ПУСТЫМ, чтобы он не отрисовывался #}
+{% block header %}{% endblock %}
 
-{% block footer %}
-  {% include "overrides/footer.html" %}
-{% endblock %}
-
+{# Вставляем наш кастомный хедер и живой фон в самое начало body #}
 {% block body %}
+  {% include "overrides/header.html" %}
   <div class="aurora-background">
     <div class="aurora-layer" style="--aurora-color: #D0BCFF;"></div>
     <div class="aurora-layer" style="--aurora-color: #334eff;"></div>
     <div class="aurora-layer" style="--aurora-color: #00aaff;"></div>
   </div>
   {{ super() }}
+{% endblock %}
+
+{# Полностью заменяем стандартный футер на наш #}
+{% block footer %}
+  {% include "overrides/footer.html" %}
 {% endblock %}

@@ -1,14 +1,15 @@
 # Имя вашего сайта, будет отображаться в шапке
-site_name: 'Вики - SP.A'
+site_name: 'Вики SP.A'
 site_description: 'База знаний сервера SP.A'
 
 # URL, по которому будет доступна ваша вики.
 # Замените your-domain.com на ваш реальный домен, когда он появится.
 # Окончание /wiki/ здесь КРИТИЧЕСКИ ВАЖНО!
-site_url: 'https://zn-worlds.ado-dokidokihimitsukichi-daigakuimo.ru/wiki/'
+site_url: 'https://your-domain.com/wiki/'
 
 # Подключение кастомных CSS и JS
 extra_css:
+  - /style.css # Подключаем основной файл стилей
   - extra.css
 extra_javascript:
   - extra.js
@@ -20,17 +21,13 @@ custom_dir: overrides
 theme:
   name: 'material'
   language: 'ru'
-  # Удаляем logo, favicon и palette, так как они будут в custom header/footer
+  # Убираем логотип и палитру, так как они теперь в вашем header.html
   features:
-    # navigation.top - это кнопка "наверх", ее можно оставить
     - navigation.top
-    # navigation.sections - это боковое меню вики, его оставляем
     - navigation.sections
 
 # Навигация по сайту (ваше меню)
 nav:
-  - '← На главный сайт': '/index.html'
-  - '---' # Горизонтальная линия-разделитель
   - 'Главная': 'index.md'
   - 'Первые шаги': 'getting_started.md'
   - 'Правила сервера': 'rules.md'
@@ -49,3 +46,5 @@ nav:
   - 'Справочник команд': 'commands.md'
   - 'Словарь терминов': 'glossary.md'
   - 'FAQ': 'faq.md'
+
+# Убираем extra, так как навигация теперь в вашем header.html

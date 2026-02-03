@@ -1,10 +1,17 @@
 /* Custom CSS for MkDocs Material theme */
 
+/* --- LAYOUT ADJUSTMENTS FOR CUSTOM HEADER --- */
+
+/* Since we are using our own header, we need to push the main content down */
+.md-container {
+    padding-top: 73px !important; /* Height of your custom header */
+}
+
 /* --- BACKGROUND & LAYOUT --- */
 
 /* Apply the main site's background color to the html and body */
 html, body {
-    background-color: #121212 !important; /* var(--color-background) */
+    background-color: #121212 !important;
 }
 
 /* Apply the noise texture from the main site to the html::after pseudo-element */
@@ -22,7 +29,7 @@ html::after {
 }
 
 /* Ensure the main MkDocs container and its children are transparent */
-.md-container, .md-main, .md-main__inner, .md-content {
+.md-main, .md-main__inner, .md-content {
     background-color: transparent !important;
 }
 
@@ -45,7 +52,7 @@ html::after {
     border-radius: 50%;
     filter: blur(160px);
     mix-blend-mode: screen;
-    opacity: 0.3; /* Adjusted for a more subtle effect */
+    opacity: 0.3;
     animation: drift 20s infinite linear alternate;
 }
 .aurora-layer:nth-child(2) {
