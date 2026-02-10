@@ -983,3 +983,351 @@ footer {
     margin-bottom: 1em;
     line-height: 1.6;
 }
+
+/* ========================================
+   АДАПТИВНЫЙ ДИЗАЙН (MOBILE RESPONSIVE)
+   ======================================== */
+
+/* --- Планшеты и маленькие ноутбуки (до 1024px) --- */
+@media (max-width: 1024px) {
+    main > section {
+        padding: 60px 32px;
+    }
+
+    .contact-right-panel {
+        padding: 60px 48px;
+    }
+
+    .wiki-main {
+        grid-template-columns: 240px 1fr;
+        gap: 32px;
+        padding: 32px 16px;
+    }
+}
+
+/* --- Планшеты (до 768px) --- */
+@media (max-width: 768px) {
+    /* Уменьшаем типографику */
+    .md-typescale-display-large { font-size: 48px; line-height: 56px; }
+    .md-typescale-headline-large { font-size: 28px; line-height: 36px; }
+    .md-typescale-title-large { font-size: 20px; line-height: 26px; }
+
+    /* Хедер и навигация */
+    header {
+        padding: 12px 16px;
+    }
+
+    nav ul {
+        gap: 16px;
+    }
+
+    nav ul a {
+        font-size: 12px;
+    }
+
+    .logo {
+        font-size: 20px;
+        gap: 8px;
+    }
+
+    .logo img {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Основные секции */
+    main > section {
+        padding: 48px 24px;
+        margin-bottom: 32px;
+        border-radius: 16px;
+    }
+
+    /* Hero секция */
+    #hero {
+        min-height: 60vh;
+        padding: 40px 24px;
+    }
+
+    /* About страница */
+    #about-hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    /* Контактная страница */
+    .contact-split-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-left-panel {
+        display: none; /* Скрываем изображение на планшетах */
+    }
+
+    .contact-right-panel {
+        padding: 48px 32px;
+    }
+
+    .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Галерея */
+    .gallery-grid {
+        columns: 2;
+        column-gap: 16px;
+    }
+
+    /* Альбомы/Моды */
+    .album-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 24px;
+    }
+
+    /* Фото-превью */
+    .photo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+    }
+
+    /* Шаги */
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* Вики */
+    .wiki-main {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 24px 16px;
+    }
+
+    .wiki-sidebar {
+        position: static;
+        border-bottom: 1px solid var(--color-outline);
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+    .wiki-content {
+        padding: 32px 24px;
+    }
+
+    /* Popup */
+    .popup-content {
+        width: 95%;
+        padding: 24px;
+    }
+
+    .popup-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #popup-cover {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* --- Мобильные устройства (до 480px) --- */
+@media (max-width: 480px) {
+    /* Еще меньше типографика */
+    .md-typescale-display-large { font-size: 36px; line-height: 44px; }
+    .md-typescale-headline-large { font-size: 24px; line-height: 32px; }
+    .md-typescale-title-large { font-size: 18px; line-height: 24px; }
+    .md-typescale-body-large { font-size: 14px; line-height: 20px; }
+
+    /* Хедер компактный */
+    header {
+        padding: 8px 12px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav ul {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul a {
+        font-size: 11px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    /* Секции с меньшим padding */
+    main > section {
+        padding: 32px 16px;
+        margin-bottom: 24px;
+        border-radius: 12px;
+    }
+
+    /* Hero */
+    #hero {
+        min-height: 50vh;
+        padding: 32px 16px;
+    }
+
+    #hero h1 {
+        margin-bottom: 12px;
+    }
+
+    /* Кнопки */
+    .md-button {
+        padding: 0 24px;
+        height: 48px;
+        font-size: 14px;
+    }
+
+    #copy-ip-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #copy-ip-button .md-typescale-label-large {
+        font-size: 11px;
+    }
+
+    /* Контакты */
+    .contact-right-panel {
+        padding: 32px 16px;
+    }
+
+    .social-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .social-button {
+        height: 80px;
+    }
+
+    .social-button i {
+        font-size: 32px;
+    }
+
+    .social-button .social-label {
+        font-size: 14px;
+    }
+
+    /* Галерея */
+    .gallery-grid {
+        columns: 1;
+    }
+
+    /* Альбомы */
+    .album-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 16px;
+    }
+
+    .play-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .play-icon .material-icons {
+        font-size: 32px;
+    }
+
+    /* Фото грид */
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Карточки шагов */
+    .step-card {
+        padding: 20px;
+    }
+
+    .step-card .step-number {
+        font-size: 36px;
+    }
+
+    /* Вики контент */
+    .wiki-content {
+        padding: 24px 16px;
+    }
+
+    .wiki-sidebar .wiki-nav h3 {
+        font-size: 18px;
+    }
+
+    .wiki-sidebar .wiki-nav li a {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 32px 16px;
+    }
+
+    .footer-nav ul {
+        gap: 16px;
+        font-size: 13px;
+    }
+
+    /* Popup на мобильных */
+    .popup-content {
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    #popup-cover {
+        width: 100px;
+        height: 100px;
+    }
+
+    #popup-title {
+        font-size: 20px;
+    }
+
+    .close-popup {
+        font-size: 24px;
+        top: 8px;
+        right: 8px;
+    }
+
+    /* Lightbox */
+    .lightbox-content {
+        width: 95%;
+    }
+
+    .close-lightbox {
+        right: 10px;
+        font-size: 32px;
+    }
+
+    /* Tour items */
+    .tour-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    .tour-date {
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+
+    /* Audio player */
+    .audio-player {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* About blockquote */
+    #about-hero blockquote {
+        font-size: 16px;
+        padding-left: 16px;
+    }
+}
