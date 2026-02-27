@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - SP.A</title>
+    <link rel="icon" href="images/logo-white.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+</head>
+<body>
+    <div id="preloader"><div class="spinner"></div></div>
+    <div id="background-placeholder"></div>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section id="profile-section">
+            <!-- Табы -->
+            <div class="profile-tabs">
+                <button class="profile-tab active" id="tab-my-profile">
+                    <span class="material-icons">person</span>
+                    Мой профиль
+                </button>
+                <button class="profile-tab" id="tab-search">
+                    <span class="material-icons">search</span>
+                    Поиск игрока
+                </button>
+            </div>
+
+            <!-- ==================== ТАБ: Мой профиль ==================== -->
+            <div id="panel-my-profile">
+
+                <!-- Состояние: загрузка (проверка токена) -->
+                <div class="profile-loading" id="my-loading">
+                    <div class="spinner"></div>
+                    <p class="md-typescale-body-large" style="margin-top: 16px;">Проверка сессии...</p>
+                </div>
+
+                <!-- Состояние: не авторизован — форма входа -->
+                <div class="profile-auth-section" id="auth-login" style="display: none;">
+                    <span class="material-icons" style="font-size: 64px; color: var(--color-primary); margin-bottom: 8px;">lock_open</span>
+                    <h2 class="md-typescale-headline-large">Вход в аккаунт</h2>
+                    <p class="md-typescale-body-large" style="margin: 8px 0 24px;">Используйте данные от лаунчера</p>
+                    <div class="profile-auth-error" id="login-error" style="display: none;"></div>
+                    <form class="profile-auth-form" id="login-form">
+                        <input type="text" class="profile-auth-input" id="login-username" placeholder="Никнейм" maxlength="16" autocomplete="username" required>
+                        <input type="password" class="profile-auth-input" id="login-password" placeholder="Пароль" autocomplete="current-password" required>
+                        <button type="submit" class="md-button md-button--filled" style="width: 100%; height: 48px;">
+                            <span class="material-icons">login</span>
+                            <span class="md-typescale-label-large">Войти</span>
+                        </button>
+                    </form>
+                    <p class="profile-auth-toggle">
+                        Нет аккаунта? <a href="#" id="show-register">Зарегистрируйтесь</a>
+                    </p>
+                </div>
+
+                <!-- Состояние: не авторизован — форма регистрации -->
+                <div class="profile-auth-section" id="auth-register" style="display: none;">
+                    <span class="material-icons" style="font-size: 64px; color: var(--color-primary); margin-bottom: 8px;">person_add</span>
+                    <h2 class="md-typescale-headline-large">Регистрация</h2>
+                    <p class="md-typescale-body-large" style="margin: 8px 0 24px;">Создайте аккаунт для сервера SP.A</p>
+                    <div class="profile-auth-error" id="register-error" style="display: none;"></div>
+                    <form class="profile-auth-form" id="register-form">
+                        <input type="text" class="profile-auth-input" id="reg-username" placeholder="Никнейм (3-16 символов)" maxlength="16" autocomplete="username" required>
+                        <input type="password" class="profile-auth-input" id="reg-password" placeholder="Пароль (от 6 символов)" autocomplete="new-password" required>
+                        <input type="password" class="profile-auth-input" id="reg-password-confirm" placeholder="Подтвердите пароль" autocomplete="new-password" required>
+                        <button type="submit" class="md-button md-button--filled" style="width: 100%; height: 48px;">
+                            <span class="material-icons">person_add</span>
+                            <span class="md-typescale-label-large">Зарегистрироваться</span>
+                        </button>
+                    </form>
+                    <p class="profile-auth-toggle">
+                        Уже есть аккаунт? <a href="#" id="show-login">Войти</a>
+                    </p>
+                </div>
+
+                <!-- Состояние: авторизован — карточка профиля -->
+                <div class="profile-card" id="my-profile-card" style="display: none;">
+                    <div class="profile-avatar" id="my-avatar">
+                        <span class="material-icons">account_circle</span>
+                    </div>
+                    <h2 class="md-typescale-headline-large" id="my-username" style="margin: 16px 0 4px; text-align: center;"></h2>
+                    <p class="md-typescale-body-large profile-uuid" id="my-uuid" title="Нажмите, чтобы скопировать" style="text-align: center; cursor: pointer; word-break: break-all;"></p>
+                    <div class="profile-stats-grid">
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-label">Дата регистрации</span>
+                            <span class="profile-stat-value" id="my-stat-registered"></span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-label">Последний вход</span>
+                            <span class="profile-stat-value" id="my-stat-last-login"></span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-label">Количество входов</span>
+                            <span class="profile-stat-value" id="my-stat-total-logins"></span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-label">UUID</span>
+                            <span class="profile-stat-value" id="my-stat-uuid" style="font-size: 14px; word-break: break-all;"></span>
+                        </div>
+                    </div>
+                    <div class="profile-user-actions">
+                        <a class="md-button md-button--text" id="my-skin-link" href="#" target="_blank">
+                            <span class="material-icons">palette</span>
+                            Страница скина
+                        </a>
+                        <button class="md-button md-button--text" id="logout-btn" style="color: #f44336;">
+                            <span class="material-icons">logout</span>
+                            Выйти
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== ТАБ: Поиск игрока ==================== -->
+            <div id="panel-search" style="display: none;">
+
+                <!-- Поиск -->
+                <div class="profile-search-section" id="profile-search">
+                    <h2 class="md-typescale-headline-large">Поиск игрока</h2>
+                    <p class="md-typescale-body-large" style="margin: 8px 0 24px;">Введите никнейм, чтобы посмотреть профиль</p>
+                    <form class="profile-search-form" id="search-form">
+                        <input type="text" class="profile-search-input" id="search-input" placeholder="Никнейм игрока" maxlength="16" autocomplete="off">
+                        <button type="submit" class="md-button md-button--filled" style="height: 48px; padding: 0 24px;">
+                            <span class="material-icons">search</span>
+                            <span class="md-typescale-label-large">Найти</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Загрузка поиска -->
+                <div class="profile-loading" id="search-loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p class="md-typescale-body-large" style="margin-top: 16px;">Загрузка профиля...</p>
+                </div>
+
+                <!-- Ошибка поиска -->
+                <div class="profile-error" id="search-error" style="display: none;">
+                    <span class="material-icons" style="font-size: 64px; color: var(--color-on-surface-variant);">person_off</span>
+                    <p class="md-typescale-title-large" style="margin-top: 16px;" id="search-error-message">Игрок не найден</p>
+                    <button class="md-button md-button--text" id="back-to-search" style="margin-top: 12px;">
+                        <span class="material-icons">arrow_back</span>
+                        Вернуться к поиску
+                    </button>
+                </div>
+
+                <!-- Карточка найденного игрока -->
+                <div class="profile-card" id="search-card" style="display: none;">
+                    <div class="profile-avatar" id="search-avatar">
+                        <span class="material-icons">account_circle</span>
+                    </div>
+                    <h2 class="md-typescale-headline-large" id="search-username" style="margin: 16px 0 4px; text-align: center;"></h2>
+                    <p class="md-typescale-body-large profile-uuid" id="search-uuid" title="Нажмите, чтобы скопировать" style="text-align: center; cursor: pointer; word-break: break-all;"></p>
+                    <div class="profile-stats-grid">
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-label">Дата регистрации</span>
+                            <span class="profile-stat-value" id="search-stat-registered"></span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-label">Последний вход</span>
+                            <span class="profile-stat-value" id="search-stat-last-login"></span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-label">Количество входов</span>
+                            <span class="profile-stat-value" id="search-stat-total-logins"></span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-label">UUID</span>
+                            <span class="profile-stat-value" id="search-stat-uuid" style="font-size: 14px; word-break: break-all;"></span>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 24px;">
+                        <a class="md-button md-button--text" id="search-skin-link" href="#" target="_blank">
+                            <span class="material-icons">palette</span>
+                            Страница скина
+                        </a>
+                    </div>
+                    <div style="text-align: center; margin-top: 8px;">
+                        <button class="md-button md-button--text" id="card-back-to-search">
+                            <span class="material-icons">arrow_back</span>
+                            Искать другого игрока
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="script.min.js"></script>
+    <script>
+        (function () {
+            // === Утилиты ===
+            var months = [
+                'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+                'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+            ];
+
+            function formatDate(isoString) {
+                if (!isoString) return 'Никогда';
+                var d = new Date(isoString);
+                if (isNaN(d.getTime())) return 'Никогда';
+                return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+            }
+
+            function copyUuid(el) {
+                var uuid = el.textContent;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(uuid);
+                }
+                var original = uuid;
+                el.textContent = 'Скопировано!';
+                setTimeout(function () { el.textContent = original; }, 1500);
+            }
+
+            // === Табы ===
+            var tabMyProfile = document.getElementById('tab-my-profile');
+            var tabSearch = document.getElementById('tab-search');
+            var panelMyProfile = document.getElementById('panel-my-profile');
+            var panelSearch = document.getElementById('panel-search');
+
+            function switchTab(tab) {
+                var isMyProfile = tab === 'my-profile';
+                tabMyProfile.classList.toggle('active', isMyProfile);
+                tabSearch.classList.toggle('active', !isMyProfile);
+                panelMyProfile.style.display = isMyProfile ? '' : 'none';
+                panelSearch.style.display = isMyProfile ? 'none' : '';
+            }
+
+            tabMyProfile.addEventListener('click', function () { switchTab('my-profile'); });
+            tabSearch.addEventListener('click', function () {
+                switchTab('search');
+                document.getElementById('search-input').focus();
+            });
+
+            // === Мой профиль: авторизация ===
+            var myLoading = document.getElementById('my-loading');
+            var authLogin = document.getElementById('auth-login');
+            var authRegister = document.getElementById('auth-register');
+            var myProfileCard = document.getElementById('my-profile-card');
+            var loginForm = document.getElementById('login-form');
+            var registerForm = document.getElementById('register-form');
+            var loginError = document.getElementById('login-error');
+            var registerError = document.getElementById('register-error');
+
+            function showMyState(state) {
+                myLoading.style.display = state === 'loading' ? '' : 'none';
+                authLogin.style.display = state === 'login' ? '' : 'none';
+                authRegister.style.display = state === 'register' ? '' : 'none';
+                myProfileCard.style.display = state === 'card' ? '' : 'none';
+            }
+
+            function showAuthError(el, msg) {
+                el.textContent = msg;
+                el.style.display = '';
+            }
+
+            function hideAuthError(el) {
+                el.style.display = 'none';
+            }
+
+            // Переключение форм
+            document.getElementById('show-register').addEventListener('click', function (e) {
+                e.preventDefault();
+                hideAuthError(loginError);
+                showMyState('register');
+            });
+            document.getElementById('show-login').addEventListener('click', function (e) {
+                e.preventDefault();
+                hideAuthError(registerError);
+                showMyState('login');
+            });
+
+            function fillMyProfileCard(data) {
+                document.getElementById('my-username').textContent = data.username;
+                document.getElementById('my-uuid').textContent = data.uuid;
+                document.getElementById('my-stat-registered').textContent = formatDate(data.createdAt);
+                document.getElementById('my-stat-last-login').textContent = formatDate(data.lastLogin);
+                document.getElementById('my-stat-total-logins').textContent = data.totalLogins;
+                document.getElementById('my-stat-uuid').textContent = data.uuid;
+
+                var avatarEl = document.getElementById('my-avatar');
+                if (data.skinUrl) {
+                    avatarEl.innerHTML = '<img src="' + data.skinUrl + '" alt="Скин">';
+                } else {
+                    avatarEl.innerHTML = '<span class="material-icons">account_circle</span>';
+                }
+
+                document.getElementById('my-skin-link').href = '/api/profile/' + encodeURIComponent(data.username);
+                document.title = data.username + ' — Профиль - SP.A';
+            }
+
+            function loadMyProfile(username) {
+                return fetch('/api/profile/' + encodeURIComponent(username) + '/stats')
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('fail');
+                        return res.json();
+                    });
+            }
+
+            function handleAuthSuccess(data) {
+                localStorage.setItem('spa_token', data.token);
+                localStorage.setItem('spa_username', data.username);
+                showMyState('loading');
+                loadMyProfile(data.username)
+                    .then(function (stats) {
+                        fillMyProfileCard(stats);
+                        showMyState('card');
+                    })
+                    .catch(function () {
+                        showMyState('login');
+                    });
+            }
+
+            // Вход
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                hideAuthError(loginError);
+                var username = document.getElementById('login-username').value.trim();
+                var password = document.getElementById('login-password').value;
+                if (!username || !password) {
+                    showAuthError(loginError, 'Заполните все поля');
+                    return;
+                }
+                var btn = loginForm.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: username, password: password })
+                })
+                .then(function (res) { return res.json().then(function (d) { return { ok: res.ok, data: d }; }); })
+                .then(function (result) {
+                    btn.disabled = false;
+                    if (!result.ok) {
+                        showAuthError(loginError, result.data.error || 'Ошибка входа');
+                        return;
+                    }
+                    handleAuthSuccess(result.data);
+                })
+                .catch(function () {
+                    btn.disabled = false;
+                    showAuthError(loginError, 'Не удалось подключиться к серверу');
+                });
+            });
+
+            // Регистрация
+            registerForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                hideAuthError(registerError);
+                var username = document.getElementById('reg-username').value.trim();
+                var password = document.getElementById('reg-password').value;
+                var confirm = document.getElementById('reg-password-confirm').value;
+                if (!username || !password || !confirm) {
+                    showAuthError(registerError, 'Заполните все поля');
+                    return;
+                }
+                if (password !== confirm) {
+                    showAuthError(registerError, 'Пароли не совпадают');
+                    return;
+                }
+                if (password.length < 6) {
+                    showAuthError(registerError, 'Пароль должен быть не менее 6 символов');
+                    return;
+                }
+                var btn = registerForm.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: username, password: password })
+                })
+                .then(function (res) { return res.json().then(function (d) { return { ok: res.ok, data: d }; }); })
+                .then(function (result) {
+                    btn.disabled = false;
+                    if (!result.ok) {
+                        showAuthError(registerError, result.data.error || 'Ошибка регистрации');
+                        return;
+                    }
+                    handleAuthSuccess(result.data);
+                })
+                .catch(function () {
+                    btn.disabled = false;
+                    showAuthError(registerError, 'Не удалось подключиться к серверу');
+                });
+            });
+
+            // Выход
+            document.getElementById('logout-btn').addEventListener('click', function () {
+                localStorage.removeItem('spa_token');
+                localStorage.removeItem('spa_username');
+                document.title = 'Профиль - SP.A';
+                showMyState('login');
+            });
+
+            // Копирование UUID
+            document.getElementById('my-uuid').addEventListener('click', function () { copyUuid(this); });
+
+            // Проверка сессии при загрузке
+            var savedToken = localStorage.getItem('spa_token');
+            var savedUsername = localStorage.getItem('spa_username');
+            if (savedToken && savedUsername) {
+                showMyState('loading');
+                fetch('/api/auth/validate?token=' + encodeURIComponent(savedToken) + '&username=' + encodeURIComponent(savedUsername))
+                    .then(function (res) { return res.json(); })
+                    .then(function (data) {
+                        if (data.valid) {
+                            return loadMyProfile(savedUsername).then(function (stats) {
+                                fillMyProfileCard(stats);
+                                showMyState('card');
+                            });
+                        } else {
+                            localStorage.removeItem('spa_token');
+                            localStorage.removeItem('spa_username');
+                            showMyState('login');
+                        }
+                    })
+                    .catch(function () {
+                        showMyState('login');
+                    });
+            } else {
+                showMyState('login');
+            }
+
+            // === Поиск игрока ===
+            var searchSection = document.getElementById('profile-search');
+            var searchLoading = document.getElementById('search-loading');
+            var searchErrorEl = document.getElementById('search-error');
+            var searchCard = document.getElementById('search-card');
+            var searchForm2 = document.getElementById('search-form');
+            var searchInput = document.getElementById('search-input');
+            var searchErrorMsg = document.getElementById('search-error-message');
+
+            function showSearchState(state) {
+                searchSection.style.display = state === 'search' ? '' : 'none';
+                searchLoading.style.display = state === 'loading' ? '' : 'none';
+                searchErrorEl.style.display = state === 'error' ? '' : 'none';
+                searchCard.style.display = state === 'card' ? '' : 'none';
+            }
+
+            function searchPlayer(username) {
+                showSearchState('loading');
+                fetch('/api/profile/' + encodeURIComponent(username) + '/stats')
+                    .then(function (res) {
+                        if (res.status === 404) throw new Error('not_found');
+                        if (!res.ok) throw new Error('server_error');
+                        return res.json();
+                    })
+                    .then(function (data) {
+                        document.getElementById('search-username').textContent = data.username;
+                        document.getElementById('search-uuid').textContent = data.uuid;
+                        document.getElementById('search-stat-registered').textContent = formatDate(data.createdAt);
+                        document.getElementById('search-stat-last-login').textContent = formatDate(data.lastLogin);
+                        document.getElementById('search-stat-total-logins').textContent = data.totalLogins;
+                        document.getElementById('search-stat-uuid').textContent = data.uuid;
+
+                        var avatarEl = document.getElementById('search-avatar');
+                        if (data.skinUrl) {
+                            avatarEl.innerHTML = '<img src="' + data.skinUrl + '" alt="Скин">';
+                        } else {
+                            avatarEl.innerHTML = '<span class="material-icons">account_circle</span>';
+                        }
+
+                        document.getElementById('search-skin-link').href = '/api/profile/' + encodeURIComponent(data.username);
+                        showSearchState('card');
+                    })
+                    .catch(function (err) {
+                        if (err.message === 'not_found') {
+                            searchErrorMsg.textContent = 'Игрок «' + username + '» не найден';
+                        } else {
+                            searchErrorMsg.textContent = 'Не удалось загрузить профиль. Проверьте соединение.';
+                        }
+                        showSearchState('error');
+                    });
+            }
+
+            function resetSearch() {
+                showSearchState('search');
+                searchInput.value = '';
+                searchInput.focus();
+            }
+
+            searchForm2.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var val = searchInput.value.trim();
+                if (!val) { searchInput.focus(); return; }
+                searchPlayer(val);
+            });
+
+            document.getElementById('back-to-search').addEventListener('click', resetSearch);
+            document.getElementById('card-back-to-search').addEventListener('click', resetSearch);
+            document.getElementById('search-uuid').addEventListener('click', function () { copyUuid(this); });
+
+            // Если URL имеет ?user=, сразу открываем таб поиска
+            var params = new URLSearchParams(window.location.search);
+            var userParam = params.get('user');
+            if (userParam) {
+                switchTab('search');
+                searchPlayer(userParam);
+            }
+        })();
+    </script>
+</body>
+</html>
