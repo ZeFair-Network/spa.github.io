@@ -1314,6 +1314,263 @@ footer {
     line-height: 1.6;
 }
 
+/* --- Profile Page --- */
+#profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 80px 48px;
+    max-width: 1400px;
+    margin: 0 auto 48px auto;
+    background-color: rgba(18, 18, 18, 0.5);
+    border: 1px solid var(--color-outline);
+    border-radius: 24px;
+}
+
+.profile-search-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 520px;
+}
+
+.profile-search-form {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.profile-search-input {
+    flex: 1;
+    height: 48px;
+    padding: 0 16px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-outline);
+    border-radius: 12px;
+    color: var(--color-on-surface);
+    font-family: var(--font-family);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.profile-search-input::placeholder {
+    color: var(--color-on-surface-variant);
+    opacity: 0.6;
+}
+
+.profile-search-input:focus {
+    border-color: var(--color-accent);
+}
+
+.profile-card {
+    background-color: var(--color-surface);
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--color-outline);
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.profile-avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--color-background);
+    border: 2px solid var(--color-outline);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-avatar .material-icons {
+    font-size: 128px;
+    color: var(--color-primary);
+}
+
+.profile-uuid {
+    transition: color 0.2s;
+}
+
+.profile-uuid:hover {
+    color: var(--color-primary);
+}
+
+.profile-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.profile-stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    background-color: var(--color-background);
+    border-radius: 12px;
+    border: 1px solid var(--color-outline);
+}
+
+.profile-stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.profile-stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-on-surface);
+}
+
+.profile-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--color-outline);
+    padding-bottom: 0;
+}
+
+.profile-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--color-on-surface-variant);
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    margin-bottom: -1px;
+}
+
+.profile-tab .material-icons {
+    font-size: 18px;
+}
+
+.profile-tab:hover {
+    color: var(--color-on-surface);
+}
+
+.profile-tab.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
+.profile-auth-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.profile-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.profile-auth-input {
+    height: 48px;
+    padding: 0 16px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-outline);
+    border-radius: 12px;
+    color: var(--color-on-surface);
+    font-family: var(--font-family);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.profile-auth-input::placeholder {
+    color: var(--color-on-surface-variant);
+    opacity: 0.6;
+}
+
+.profile-auth-input:focus {
+    border-color: var(--color-accent);
+}
+
+.profile-auth-toggle {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--color-on-surface-variant);
+}
+
+.profile-auth-toggle a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.profile-auth-toggle a:hover {
+    color: var(--color-on-surface);
+}
+
+.profile-auth-error {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    background-color: rgba(244, 67, 54, 0.12);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    border-radius: 12px;
+    color: #f44336;
+    font-size: 14px;
+    text-align: center;
+}
+
+.profile-user-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
 /* ========================================
    АДАПТИВНЫЙ ДИЗАЙН (MOBILE RESPONSIVE)
    ======================================== */
@@ -1455,6 +1712,24 @@ footer {
     .feed-item {
         flex-direction: column;
         gap: 6px;
+    }
+
+    /* Профиль */
+    #profile-section {
+        padding: 48px 24px;
+    }
+
+    .profile-search-form {
+        flex-direction: column;
+    }
+
+    .profile-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-tab {
+        padding: 10px 16px;
+        font-size: 12px;
     }
 
     /* Вики */
@@ -1612,6 +1887,24 @@ footer {
 
     .step-card .step-number {
         font-size: 36px;
+    }
+
+    /* Профиль */
+    #profile-section {
+        padding: 32px 16px;
+    }
+
+    .profile-card {
+        padding: 24px 16px;
+    }
+
+    .profile-avatar {
+        width: 96px;
+        height: 96px;
+    }
+
+    .profile-avatar .material-icons {
+        font-size: 96px;
     }
 
     /* Вики контент */
