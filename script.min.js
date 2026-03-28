@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeAlbumPopup();
         // --- Premium Animations ---
         initAuroraTracking();
-        initCardTilt();
         initMagneticButtons();
         initScrollReveal();
         initStickyHero();
@@ -274,24 +273,6 @@ function initCustomCursor() {
     document.addEventListener('mouseenter', () => {
         dot.style.opacity = '1';
         ring.style.opacity = '1';
-    });
-}
-
-// --- 3D Card Tilt ---
-function initCardTilt() {
-    const cards = document.querySelectorAll('.launcher-feature-card, .step-card');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const r = card.getBoundingClientRect();
-            const x = (e.clientX - r.left) / r.width  - 0.5;
-            const y = (e.clientY - r.top)  / r.height - 0.5;
-            card.style.transform = `perspective(700px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg) translateY(-4px)`;
-            card.style.transition = 'transform 0.05s linear';
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-            card.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s, border-color 0.3s';
-        });
     });
 }
 
