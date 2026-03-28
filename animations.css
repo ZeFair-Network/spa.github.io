@@ -113,6 +113,8 @@
 
 main {
     animation: anim-fadeInUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+    position: relative;
+    z-index: 2;
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -496,4 +498,86 @@ nav ul li a:hover::after {
     z-index: 0;
     opacity: 0.055;
     filter: blur(60px);
+}
+
+/* ─────────────────────────────────────────────────────────
+   L: ANIMATED DOT GRID BACKGROUND
+   ───────────────────────────────────────────────────────── */
+
+@keyframes anim-dotGridDrift {
+    0%   { background-position: 0px 0px; }
+    100% { background-position: 28px 28px; }
+}
+
+.dot-grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(
+        circle,
+        rgba(208, 188, 255, 0.11) 1px,
+        transparent 1px
+    );
+    background-size: 28px 28px;
+    animation: anim-dotGridDrift 7s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ─────────────────────────────────────────────────────────
+   J: GLASSMORPHISM CARDS
+   ───────────────────────────────────────────────────────── */
+
+.launcher-feature-card,
+.step-card {
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    background: rgba(30, 30, 30, 0.72) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   K: NEON GLOW
+   ───────────────────────────────────────────────────────── */
+
+/* Hero heading neon aura (drop-shadow works with gradient text) */
+#hero h1 {
+    filter: drop-shadow(0 0 28px rgba(208, 188, 255, 0.38))
+            drop-shadow(0 0 64px rgba(51, 78, 255, 0.22));
+    transform-origin: center top;
+    will-change: transform;
+}
+
+/* Card icons — neon color + glow on hover */
+.launcher-feature-card:hover .feature-icon .material-icons,
+.step-card:hover .step-icon .material-icons {
+    filter: drop-shadow(0 0 10px var(--color-primary));
+    color: var(--color-primary);
+    transition: filter 0.35s ease, color 0.35s ease;
+}
+
+/* Filled button neon glow */
+.md-button--filled {
+    box-shadow: 0 0 18px rgba(51, 78, 255, 0.45),
+                0 8px 24px -8px rgba(51, 78, 255, 0.55) !important;
+    transition: box-shadow 0.3s ease !important;
+}
+.md-button--filled:hover {
+    box-shadow: 0 0 32px rgba(51, 78, 255, 0.75),
+                0 0 64px rgba(208, 188, 255, 0.30),
+                0 12px 36px -6px rgba(51, 78, 255, 0.80) !important;
+}
+
+/* Download button neon — replaces old glowPulse animation */
+.btn-download.primary {
+    animation: none !important;
+    box-shadow: 0 0 22px rgba(51, 78, 255, 0.50),
+                0 0 48px rgba(208, 188, 255, 0.22),
+                0 8px 24px -8px rgba(51, 78, 255, 0.60) !important;
+    transition: box-shadow 0.35s ease !important;
+}
+.btn-download.primary:hover {
+    box-shadow: 0 0 36px rgba(51, 78, 255, 0.80),
+                0 0 72px rgba(208, 188, 255, 0.38),
+                0 12px 36px -4px rgba(51, 78, 255, 0.85) !important;
 }

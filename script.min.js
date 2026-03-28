@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Запускаем немедленно — не ждём компонентов
     initCustomCursor();
     initParticles();
+    initDotGrid();
 
     // --- Load Components ---
     const loadComponent = (url, placeholderId) => {
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initCardTilt();
         initMagneticButtons();
         initScrollReveal();
+        initStickyHero();
         initTextScramble();
         initAmbientParticles();
     });
@@ -459,6 +461,45 @@ function initAmbientParticles() {
     for (let i = 0; i < 8; i++) setTimeout(spawn, i * 200);
     // Дальше — постоянно
     setInterval(spawn, 450);
+}
+
+// --- L: Dot Grid Background ---
+function initDotGrid() {
+    const grid = document.createElement('div');
+    grid.className = 'dot-grid-bg';
+    document.body.insertBefore(grid, document.body.firstChild);
+}
+
+// --- F: Scroll-Shrink Hero ---
+function initStickyHero() {
+    const heroH1      = document.querySelector('#hero h1');
+    const heroActions = document.querySelector('#hero .hero-actions');
+    const heroIP      = document.querySelector('#hero .hero-server-ip');
+    if (!heroH1) return;
+
+    let ready = false;
+    setTimeout(() => {
+        // Drop the one-shot fadeInUp fill so JS can freely control transform
+        heroH1.style.animation    = 'anim-gradientFlow 7s -0.2s linear infinite';
+        heroH1.style.transformOrigin = 'center top';
+        if (heroActions) heroActions.style.animation = 'none';
+        ready = true;
+    }, 1100);
+
+    window.addEventListener('scroll', () => {
+        if (!ready) return;
+        const p = Math.min(window.scrollY / 280, 1);
+
+        heroH1.style.transform = `scale(${1 - p * 0.38}) translateY(${-p * 36}px)`;
+
+        if (heroActions) {
+            heroActions.style.opacity   = Math.max(0, 1 - p * 1.8).toString();
+            heroActions.style.transform = `translateY(${-p * 20}px)`;
+        }
+        if (heroIP) {
+            heroIP.style.opacity = Math.max(0, 1 - p * 2).toString();
+        }
+    }, { passive: true });
 }
 
 // --- Text Scramble for Hero H1 ---
